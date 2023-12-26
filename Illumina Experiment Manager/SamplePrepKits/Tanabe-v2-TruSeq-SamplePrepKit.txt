@@ -1,0 +1,8 @@
+﻿[Version]
+1
+[Name]
+Tanabe-v2-TruSeq-SamplePrepKit
+[Settings]
+ManifestExtension	AmpliconManifest
+[Compatible Index Kits]
+Tanabe-v2-TruSeq-IndexKit
