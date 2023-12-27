@@ -35,11 +35,15 @@ if (!$forwardprimerfile || !$reverseprimerfile || !$outputfile) {
 	&errorMessage(__LINE__, "Invalid options.");
 }
 my $name = $outputfile;
+$name =~ s/^.+\///;
 $name =~ s/\.[^\.]+$//;
+my $extension = lc($name);
+$extension =~ s/\-//g;
+$extension =~ s/indexkit//g;
 unless (open($outputhandle, "> $outputfile")) {
 	&errorMessage(__LINE__, "Cannot write \"$outputfile\".");
 }
-print($outputhandle "[Version]\n1\n[Name]\n$name\n[PlateExtension]\nnexxtv2\n[Settings]\nAdapter\tAGATCGGAAGAGCACACGTCTGAACTCCAGTCA\nAdapterRead2\tAGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT\n[I7]\n");
+print($outputhandle "[Version]\n1\n[Name]\n$name\n[PlateExtension]\n$extension\n[Settings]\nAdapter\tAGATCGGAAGAGCACACGTCTGAACTCCAGTCA\nAdapterRead2\tAGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT\n[I7]\n");
 unless (open($inputhandle, "< $reverseprimerfile")) {
 	&errorMessage(__LINE__, "Cannot read \"$reverseprimerfile\".");
 }
